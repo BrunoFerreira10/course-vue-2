@@ -25,6 +25,7 @@ export default {
 
 #task-list {
   display: flex;
+  justify-content: center;
   flex-wrap: wrap;
 
   margin-top: 2rem;

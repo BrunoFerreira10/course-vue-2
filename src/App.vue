@@ -59,10 +59,11 @@ export default {
   margin: 0px;
   box-sizing: border-box;
   font-family: "Baloo Tamma 2", cursive;
+  /* font-family: 'Montserrat', sans-serif; */
 }
 
 .font-aid {
-  padding-top: 0.2rem;
+  /* padding-top: 0.2rem; */
 }
 
 body {
@@ -80,15 +81,22 @@ body {
     var(--bgyellow),
     var(--bgblue)
   ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  
 }
 
 #app {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
 
   height: 100%;
   width: 80%;
+
+  padding-top: 10%;  
 }
+
+
+
+
 </style>

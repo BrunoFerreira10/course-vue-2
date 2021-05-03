@@ -5,7 +5,7 @@
       
       <div class="progress" :style="{width: completed + '%'}">        
       </div>
-      <span class="txt">{{ completed + '%' }}</span>
+      <span class="font-aid">{{ completed + '%' }}</span>
     </div>
   </div>
 </template>

@@ -1,7 +1,7 @@
 <template>
   <div id="task-input">
-    <input type="input" placeholder="New task?" v-model="taskText" ref="taskInputText">
-    <button @click="addTask" >+</button>
+    <input class="font-aid" type="input" placeholder="New task?" v-model="taskText" ref="taskInputText" @keyup.enter="addTask">
+    <button class="font-aid" @click="addTask">+</button>
   </div>
 </template>
 
@@ -35,11 +35,13 @@ export default {
     justify-content: center;
     align-items: center;
     margin-top: 1rem;
+    width: 100%;
+    max-width: 400px;
   }
 
   input {
-    width: 400px;
-    height: 2rem;;
+    width: 100%;
+    height: 2rem;
 
     background: rgba(255,255,255,.2);
     color: white;
@@ -50,7 +52,6 @@ export default {
 
     line-height: 2rem;
     font-size: 1.1rem;
-    padding-top: 0.3rem;
     padding-left: 0.5rem;
   }
 
@@ -59,10 +60,6 @@ export default {
     opacity: 0.5;
     font-weight: 600;
   }
-
-  /* input:focus::placeholder {
-    color: transparent;
-  } */
 
   button {
     height: 2rem;
@@ -78,8 +75,7 @@ export default {
     text-align: center;
     font-weight: 600;
     line-height: 2rem;    
-    font-size: 1rem;
-    padding-top: 0.1rem;
+    font-size: 1rem;    
   }
 
   button:hover {
