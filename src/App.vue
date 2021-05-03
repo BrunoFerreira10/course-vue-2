@@ -2,7 +2,7 @@
   <div id="app">
     <task-progress :completed="completedTasks"/>
     <task-input />
-    <task-list :tasks="tasks"/>
+    <task-list/>
   </div>
 </template>
 
@@ -20,12 +20,10 @@ export default {
     TaskInput,
     TaskList,
   },
-  data() {
-    return {
-      tasks: []      
-    }
-  },
   computed: {
+    tasks: function () {
+      return eventbus.tasks
+    },
     completedTasks: function() {
       var total = 0
       var complete = 0
@@ -40,47 +38,8 @@ export default {
         return 100
 
       return Number(((complete / total) * 100).toFixed(1))
-    }
-  },
-  methods: {
-    saveLocal() {
-      const parsed = JSON.stringify(this.tasks)
-      localStorage.setItem('tasks', parsed)
-    }   
-  },
-  created() {
-    eventbus.onTaskAdded(task => {
-
-      if(task.text == "")
-        return
-
-      this.tasks.push(task)
-    })
-    eventbus.onTaskClicked(task => {
-      const idx = this.tasks.indexOf(task)
-      this.tasks[idx].open = !this.tasks[idx].open
-      this.saveLocal()
-    })
-    eventbus.onTaskDeleted(task => {      
-      const idx = this.tasks.indexOf(task)
-      this.tasks.splice(idx, 1)
-      this.saveLocal()
-    })
-  },
-  mounted() {
-    if(localStorage.getItem('tasks')){
-      try {
-        this.tasks = JSON.parse(localStorage.getItem('tasks'))
-      } catch (e) {
-        localStorage.removeItem('tasks')
-      }
-    }
-  },
-  watch: {
-    tasks() {
-      this.saveLocal()
     }  
-  }
+  }  
 }
 </script>
 
