@@ -7,15 +7,18 @@
 <script>
 
 import Task from "@/components/Task.vue";
+import eventbus from "@/eventbus"
 
 export default {
-  props: {
-    tasks: Array
-  },
   components: {
     Task,
   },
-};
+  computed: {
+    tasks: function () {
+      return eventbus.tasks
+    }
+  }
+}
 </script>
 
 <style scoped>
