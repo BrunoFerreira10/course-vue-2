@@ -29,7 +29,6 @@ export default {
   flex-wrap: wrap;
 
   margin-top: 2rem;
-
 }
 
 </style>
