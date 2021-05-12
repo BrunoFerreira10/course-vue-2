@@ -1,5 +1,5 @@
 <template>
-  <div class="task" :class="task.open ? 'open-task' : 'closed-task'" @click="setStatus()">
+  <div class="task" :class="task.open ? 'open-task' : 'closed-task'" @click="toogleStatus()">
     <div/>
     <p>{{ task.text }} </p>
     <button class="font-aid" @click.stop="deleteTask()" >X</button>
@@ -21,7 +21,7 @@ export default {
     }
   },
   methods: {
-    setStatus() {
+    toogleStatus() {
       eventbus.taskClicked(this.task)
 
     },
@@ -38,27 +38,31 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
+
     position: relative;
 
-    min-height: 6rem;
     width: 14rem;
+    min-height: 6rem;
     padding: 10px;
     margin: 10px;
-
-    color: white;    
     border-radius: 1rem;
 
+    color: #fff;    
+
     overflow: unset;
+    cursor: pointer;
   }
 
   .open-task {
-    background-color: var(--open-task-bg-1);
     border-left: 1rem solid var(--open-task-bg-2);
+
+    background-color: var(--open-task-bg-1);
   }
 
   .closed-task {
-    background-color: var(--closed-task-bg-1);
     border-left: 1rem solid var(--closed-task-bg-2);
+
+    background-color: var(--closed-task-bg-1);
   }
 
   .open-task > button {
@@ -70,9 +74,9 @@ export default {
   }
 
   p {
-    text-align: center;
     font-size: 1rem;
     line-height: 1.2rem;    
+    text-align: center;
   }
 
   .closed-task > p {
@@ -97,10 +101,12 @@ export default {
     border: none;
     border-radius: 1rem;
         
+    color: #fff;    
     font-size: 0.5rem;    
     font-weight: 600;
-    
-    color: white;    
+
+    cursor: pointer;
+    user-select: none;
   }
 
   button::selection {

@@ -7,45 +7,59 @@ export default new Vue({
   methods: {
     taskAdded(task) {
 
-      if(task.text == "")
-      return
+      if (task.text == "")
+        return
 
-    this.tasks.push(task)
-    this.$emit('taskAdded', task)
+      const sameName = t => t.text === task.text
+      const validName = this.tasks.filter(sameName).length == 0
+
+      if(validName)
+        this.tasks.push(task)
+      else
+        alert("We already have a task with '" + task.text + "' text!")  
+
+      this.$emit('taskAdded', task)
     },
+
     onTaskAdded(callback) {
-      
       this.$on('taskAdded', callback)
     },
+
     taskDeleted(task) {
       const idx = this.tasks.indexOf(task)
       this.tasks.splice(idx, 1)
-      this.saveLocal()
       this.$emit('taskDeleted', task)
-    }, onTaskDeleted(callback) {      
+    }, 
+
+    onTaskDeleted(callback) {
       this.$on('taskDeleted', callback)
     },
-    taskClicked(task) {   
+
+    taskClicked(task) {
       const idx = this.tasks.indexOf(task)
       this.tasks[idx].open = !this.tasks[idx].open
-      this.saveLocal()   
       this.$emit('taskClicked', task)
     },
-    onTaskClicked(callback) {      
+
+    onTaskClicked(callback) {
       this.$on('taskClicked', callback)
     },
+    
     saveLocal() {
       const parsed = JSON.stringify(this.tasks)
       localStorage.setItem('tasks', parsed)
     }
   },
   watch: {
-    tasks() {
-      this.saveLocal()
-    }  
+    tasks: {      
+      deep: true,
+      handler() {
+        this.saveLocal()
+      }
+    }
   },
   created() {
-    if(localStorage.getItem('tasks')){
+    if (localStorage.getItem('tasks')) {
       try {
         this.tasks = JSON.parse(localStorage.getItem('tasks'))
       } catch (e) {
