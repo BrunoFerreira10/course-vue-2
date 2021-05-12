@@ -1,5 +1,5 @@
 <template>
-  <div class="task" :class="task.open ? 'open-task' : 'closed-task'" @click="setStatus()">
+  <div class="task" :class="task.open ? 'open-task' : 'closed-task'" @click="toogleStatus()">
     <div/>
     <p>{{ task.text }} </p>
     <button class="font-aid" @click.stop="deleteTask()" >X</button>
@@ -21,7 +21,7 @@ export default {
     }
   },
   methods: {
-    setStatus() {
+    toogleStatus() {
       eventbus.taskClicked(this.task)
 
     },
