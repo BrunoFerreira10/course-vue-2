@@ -28,7 +28,7 @@ export default new Vue({
     taskDeleted(task) {
       const idx = this.tasks.indexOf(task)
       this.tasks.splice(idx, 1)
-      this.saveLocal()
+      // this.saveLocal()
       this.$emit('taskDeleted', task)
     }, 
 
@@ -39,7 +39,7 @@ export default new Vue({
     taskClicked(task) {
       const idx = this.tasks.indexOf(task)
       this.tasks[idx].open = !this.tasks[idx].open
-      this.saveLocal()
+      // this.saveLocal()
       this.$emit('taskClicked', task)
     },
 
@@ -53,8 +53,11 @@ export default new Vue({
     }
   },
   watch: {
-    tasks() {
-      this.saveLocal()
+    tasks: {      
+      deep: true,
+      handler() {
+        this.saveLocal()
+      }
     }
   },
   created() {
