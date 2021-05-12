@@ -50,6 +50,7 @@ export default {
     color: #fff;    
 
     overflow: unset;
+    cursor: pointer;
   }
 
   .open-task {
@@ -102,7 +103,10 @@ export default {
         
     color: #fff;    
     font-size: 0.5rem;    
-    font-weight: 600;    
+    font-weight: 600;
+
+    cursor: pointer;
+    user-select: none;
   }
 
   button::selection {

@@ -1,6 +1,12 @@
 <template>
   <div id="task-list">
-    <task v-for="task, id in tasks" :key="id" :task="task"/>
+    <template v-if="tasks.length > 0">      
+      <task v-for="task in tasks" :key="task.name" :task="task"/>
+    </template>
+    <template v-else>
+      <p class="no-task">Very nice! You are free!</p>
+      <p>Add new tasks to start to work!</p>
+    </template>
   </div>
 </template>
 
@@ -25,10 +31,20 @@ export default {
 
 #task-list {
   display: flex;
-  justify-content: center;
+  justify-content: center;  
   flex-wrap: wrap;
 
   margin-top: 2rem;
+}
+p {
+  width: 100%;
+
+  text-align: center;
+  color: white;  
+}
+
+.no-task {
+  font-size: 2rem;
 }
 
 </style>

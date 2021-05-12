@@ -10,7 +10,14 @@ export default new Vue({
       if (task.text == "")
         return
 
-      this.tasks.push(task)
+      const sameName = t => t.text === task.text
+      const validName = this.tasks.filter(sameName).length == 0
+
+      if(validName)
+        this.tasks.push(task)
+      else
+        alert("We already have a task with '" + task.text + "' text!")  
+
       this.$emit('taskAdded', task)
     },
 
